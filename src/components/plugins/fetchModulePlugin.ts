@@ -32,14 +32,14 @@ export const fetchModulePlugin = (entryPointCode: string) => {
         return onLoadResult;
       });
 
-      // build.onLoad({ filter: /.*/ }, async (args: any) => {
-      //   // check in IndexedDB
-      //   const cachedData = await localforage.getItem<esbuild.OnLoadResult>(
-      //     args.path
-      //   );
-      //   cachedData && console.log(`FOUND ${args.path} in cache`);
-      //   return cachedData ? cachedData : null;
-      // });
+      build.onLoad({ filter: /.*/ }, async (args: any) => {
+        // check in IndexedDB
+        const cachedData = await localforage.getItem<esbuild.OnLoadResult>(
+          args.path
+        );
+        cachedData && console.log(`FOUND ${args.path} in cache`);
+        return cachedData ? cachedData : null;
+      });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
         const { data, request } = await axios.get(args.path);
