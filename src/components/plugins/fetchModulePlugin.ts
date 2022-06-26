@@ -13,11 +13,12 @@ export const fetchModulePlugin = (entryPointCode: string) => {
         };
       });
 
-      build.onLoad({ filter: /^index\.js$/ }, async (args: any) => {
+      build.onLoad({ filter: /.*/ }, async (args: any) => {
         // check in IndexedDB
         const cachedData = await localforage.getItem<esbuild.OnLoadResult>(
           args.path
         );
+        cachedData && console.log(`FOUND ${args.path} in cache`)
         return cachedData ? cachedData : null;
       });
 
