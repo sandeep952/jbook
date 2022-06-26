@@ -1,28 +1,51 @@
 import * as esbuild from "esbuild-wasm";
-export const unpkgPathPlugin = () => {
+import axios from "axios";
+export const unpkgPathPlugin = (entryPointCode:string) => {
   return {
     name: "unpkg-path-plugin",
     setup(build: esbuild.PluginBuild) {
       build.onResolve({ filter: /.*/ }, async (args: any) => {
         console.log("onResolve", args);
-        return { path: args.path, namespace: "a" };
+        const BASE_URL = "https://unpkg.com";
+        const { path,resolveDir } = args;
+
+        if (path === "index.js") {
+          return {
+            path,
+            namespace: "a",
+          };
+        }
+        // if its a relative path
+        if (path.includes("./") || path.includes("../")) {
+          const newPath = new URL(path, `${BASE_URL}${resolveDir}/`).href;
+
+          return {
+            path: newPath,
+            namespace: "a",
+          };
+        }
+        // if its a absolute path
+        return {
+          path: `${BASE_URL}/${args.path}`,
+          namespace: "a",
+        };
       });
       build.onLoad({ filter: /.*/ }, async (args: any) => {
         console.log("onLoad", args);
         if (args.path === "index.js") {
           return {
             loader: "jsx",
-            contents: `
-              import message from './message';
-              console.log(message);
-            `,
-          };
-        } else {
-          return {
-            loader: "jsx",
-            contents: 'export default "hi there!"',
+            contents: entryPointCode
           };
         }
+
+        const { data, request } = await axios.get(args.path);
+        
+        return {
+          loader: "jsx",
+          contents: data,
+          resolveDir: new URL("./", request.responseURL).pathname,
+        };
       });
     },
   };
