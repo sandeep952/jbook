@@ -6,7 +6,7 @@ import { unpkgPathPlugin } from './components/plugins/unpkg-path-plugin';
 
 function App() {
   const [code, setCode] = useState("");
-  const [inputValue, setInputValue] = useState("import React from 'react';");
+  const [inputValue, setInputValue] = useState("import 'bulma/css/bulma.css';");
   const submitData = async () => {
     const transformedCode = await esbuild.build({
       entryPoints: ['index.js'],
