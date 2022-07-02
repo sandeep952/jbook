@@ -5,5 +5,5 @@ const App = ()=>(<div>hello</div>)
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
-root.render(<App name="Saeloun blog" callback={() => console.log("Blog rendered")} />);
+root.render(<App/>);
 `
