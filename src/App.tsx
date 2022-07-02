@@ -1,10 +1,11 @@
 import * as esbuild from 'esbuild-wasm'
 import { useState, useEffect, useRef } from 'react';
+import CodeEditor from './components/CodeEditor/CodeEditor';
 import { fetchModulePlugin } from './components/plugins/fetchModulePlugin';
 import { unpkgPathPlugin } from './components/plugins/unpkg-path-plugin';
-
+import { INITAL_CODE_EDITOR_CONTENT } from './constants/initalCodeEditorValue';
 function App() {
-  const [inputValue, setInputValue] = useState("");
+  const [code, setCode] = useState(INITAL_CODE_EDITOR_CONTENT);
   const iframeRef = useRef<any>();
   const submitData = async () => {
     iframeRef.current.srcdoc = initalIframeHTML
@@ -12,7 +13,7 @@ function App() {
       entryPoints: ['index.js'],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(), fetchModulePlugin(inputValue)]
+      plugins: [unpkgPathPlugin(), fetchModulePlugin(code)]
     });
     const stringifiedCode = transformedCode.outputFiles[0].text;
     iframeRef.current.contentWindow.postMessage(stringifiedCode, '*')
@@ -53,18 +54,10 @@ function App() {
   return (
     <div className="App m-1">
       <h1> Jbook </h1>
-      <div>
-        <div>
-          <textarea
-            value={inputValue}
-            cols={50}
-            rows={10}
-            onChange={(event) => setInputValue(event?.target.value)}>
-          </textarea>
-        </div>
-        <button className='btn btn-primary m-1' onClick={submitData}> Submit </button>
-      </div>
-      <iframe ref={iframeRef} srcDoc={initalIframeHTML} title='executionFrame' sandbox='allow-scripts' />
+        <button className='btn btn-primary m-1' onClick={submitData}> Run </button>
+        <CodeEditor initValue={code}
+          onUpdate={setCode} />
+        <iframe ref={iframeRef} srcDoc={initalIframeHTML} title='executionFrame' sandbox='allow-scripts' />
     </div>
   );
 }
