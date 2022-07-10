@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/jbook/static/css/main.47418fe0.css",
+    "main.js": "/jbook/static/js/main.4fb883d0.js",
+    "static/js/787.ccd08f58.chunk.js": "/jbook/static/js/787.ccd08f58.chunk.js",
+    "index.html": "/jbook/index.html",
+    "main.47418fe0.css.map": "/jbook/static/css/main.47418fe0.css.map",
+    "main.4fb883d0.js.map": "/jbook/static/js/main.4fb883d0.js.map",
+    "787.ccd08f58.chunk.js.map": "/jbook/static/js/787.ccd08f58.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47418fe0.css",
+    "static/js/main.4fb883d0.js"
+  ]
+}
