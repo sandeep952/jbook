@@ -6,6 +6,10 @@
     flex-grow: 1;
 }
 
+.preview-wrapper .error{
+    color:red;
+    position: absolute;
+}
 .react-draggable-transparent-selection .preview-wrapper:after{
     content: "";
     height: 100%;

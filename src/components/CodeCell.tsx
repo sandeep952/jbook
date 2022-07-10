@@ -7,12 +7,13 @@ import Resizeable from './Resizeable';
 function CodeCell() {
     const [code, setCode] = useState("");
     const [inputValue, setInputValue] = useState(INITAL_CODE_EDITOR_CONTENT);
-
+    const [err,setErr] = useState('') 
     
     useEffect(() => {
         const executeCode = async () => {
-            const stringifiedCode = await bundle(inputValue)
-            setCode(stringifiedCode)
+            const bundlerResponse = await bundle(inputValue)
+            setCode(bundlerResponse.code);
+            setErr(bundlerResponse.error);
         }
         
         const timer = setTimeout(executeCode,1000);
@@ -36,6 +37,7 @@ function CodeCell() {
                         </div>
                     </Resizeable>
                     <Preview
+                        err={err}
                         code={code}
                     />
                 </div>

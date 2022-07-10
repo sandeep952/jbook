@@ -3,8 +3,9 @@ import { INITAL_IFRAME_HTML } from "../constants/initalIframeHTML";
 import './Preview.css'
 interface PreviewProps {
   code: string;
+  err: string
 }
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+const Preview: React.FC<PreviewProps> = ({ code, err }) => {
   const iframeRef = useRef<any>();
 
   useEffect(() => {
@@ -24,6 +25,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         title="executionFrame"
         sandbox="allow-scripts"
       />
+      {err && <div className="error">{err}</div>}
     </div>
 
   );
