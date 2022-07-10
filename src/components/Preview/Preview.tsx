@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { INITAL_IFRAME_HTML } from "../constants/initalIframeHTML";
+import { INITAL_IFRAME_HTML } from "../../constants/initalIframeHTML";
 import './Preview.css'
 interface PreviewProps {
   code: string;

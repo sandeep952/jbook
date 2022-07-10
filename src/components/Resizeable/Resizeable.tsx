@@ -43,7 +43,6 @@ const Resizeable: React.FC<ResizeableProps> = ({ direction, children }) => {
             maxConstraints: [Infinity, innerHeight * 0.7]
         }
     }
-    console.log("rendered")
 
     return (
         <ResizableBox

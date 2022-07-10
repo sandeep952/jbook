@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import CodeEditor from './CodeEditor';
 import { INITAL_CODE_EDITOR_CONTENT } from '../constants/initalCodeEditorValue';
-import Preview from './Preview';
+import Preview from './Preview/Preview';
 import { bundle } from "../bundler/bundler";
-import Resizeable from './Resizeable';
+import Resizeable from './Resizeable/Resizeable';
 function CodeCell() {
     const [code, setCode] = useState("");
     const [inputValue, setInputValue] = useState(INITAL_CODE_EDITOR_CONTENT);
@@ -16,7 +16,7 @@ function CodeCell() {
             setErr(bundlerResponse.error);
         }
         
-        const timer = setTimeout(executeCode,1000);
+        const timer = setTimeout(executeCode,800);
         return ()=>{
             clearTimeout(timer)
         }
