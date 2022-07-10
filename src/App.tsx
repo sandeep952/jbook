@@ -4,7 +4,7 @@ import CodeCell from "./components/CodeCell";
 import './App.css'
 function App() {
 
-  const [isEsbuildInitialized,setIsEsbuildInitialized] = useState(false);
+  const [isEsbuildInitialized, setIsEsbuildInitialized] = useState(false);
   useEffect(() => {
     startService();
   }, []);
@@ -25,6 +25,7 @@ function App() {
 
   return (
     <div className="mb-2 bg bg-dark">
+      <h1 className='text-white text-center'> Jbook </h1>
       {isEsbuildInitialized && <CodeCell />}
     </div>
   );

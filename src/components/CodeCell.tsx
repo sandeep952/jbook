@@ -24,7 +24,6 @@ function CodeCell() {
 
     return (
         <div className="CodeCell m-1">
-            <h1 className='text-white text-center'> Jbook </h1>
             {/* <button className='btn btn-primary m-1' onClick={executeCode}> Run </button> */}
             <Resizeable direction='vertical'>
                 <div className='d-flex h-100'>
