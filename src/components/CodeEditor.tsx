@@ -1,4 +1,4 @@
-import MonacoEditor, { OnMount } from '@monaco-editor/react'
+import MonacoEditor from '@monaco-editor/react'
 import React from 'react'
 
 interface CodeEditorProps {
@@ -11,7 +11,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initValue, onUpdate }) => {
             onChange={(updatedCode) => onUpdate(updatedCode)}
             value={initValue}
             theme="vs-dark"
-            height={500}
+            height="100%"
             language='javascript'
             options={{
                 wordWrap: 'on',
@@ -22,7 +22,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initValue, onUpdate }) => {
                 scrollBeyondLastLine: false,
                 automaticLayout: true,
                 tabSize: 2,
-                formatOnType:true
+                formatOnType: true,
             }}
         />
     )

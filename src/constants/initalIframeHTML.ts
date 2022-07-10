@@ -3,8 +3,6 @@ export const INITAL_IFRAME_HTML = `
 <script>
   window.addEventListener('message',(event)=>{
     try{
-    console.log("message")
-
       eval(event.data)
     }
     catch(err){

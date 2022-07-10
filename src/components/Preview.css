@@ -1,0 +1,16 @@
+.preview-wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    position: relative;
+    flex-grow: 1;
+}
+
+.react-draggable-transparent-selection .preview-wrapper:after{
+    content: "";
+    height: 100%;
+    position: absolute;
+    top:0;
+    right:0;
+    left:0;
+}
