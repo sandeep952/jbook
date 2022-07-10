@@ -1,5 +1,5 @@
 export const INITAL_IFRAME_HTML = `
-<div id="root">hl</div>
+<div id="root"></div>
 <script>
   window.addEventListener('message',(event)=>{
     try{

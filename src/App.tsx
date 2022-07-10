@@ -1,9 +1,10 @@
 import * as esbuild from "esbuild-wasm";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CodeCell from "./components/CodeCell";
 import './App.css'
 function App() {
 
+  const [isEsbuildInitialized,setIsEsbuildInitialized] = useState(false);
   useEffect(() => {
     startService();
   }, []);
@@ -13,6 +14,7 @@ function App() {
       await esbuild.initialize({
         wasmURL: '/esbuild.wasm'
       });
+      setIsEsbuildInitialized(true);
       console.log("service", esbuild)
     }
     catch (err) {
@@ -23,7 +25,7 @@ function App() {
 
   return (
     <div className="mb-2 bg bg-dark">
-      <CodeCell />
+      {isEsbuildInitialized && <CodeCell />}
     </div>
   );
 }

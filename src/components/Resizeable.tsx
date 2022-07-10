@@ -23,7 +23,6 @@ const Resizeable: React.FC<ResizeableProps> = ({ direction, children }) => {
                 setInnerHeight(window.innerHeight)
             }, 100)
         }
-
         window.addEventListener('resize', listener)
     }, [])
 
